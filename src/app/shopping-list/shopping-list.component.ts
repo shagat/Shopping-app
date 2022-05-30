@@ -19,8 +19,6 @@ export class ShoppingListComponent implements OnInit {
   ngOnInit(): void {
   }
   getNewIngredient(igdData:Ingredient){
-    console.log(igdData.name)
-    console.log("hello")
     this.ingredients.push(igdData)
   }
 }
