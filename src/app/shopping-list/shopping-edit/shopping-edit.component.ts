@@ -17,11 +17,6 @@ export class ShoppingEditComponent implements OnInit {
   }
   getInputData(igdName:string){
     const ingredient = new Ingredient(igdName, this.igdAmount.nativeElement.value)
-    // this.ingredient.name = nameInput.value
-    // this.ingredient.amount = Number(amountInput.value)
-    // this.ingredient.name = igdName
-    // this.ingredient.amount = Number(this.igdAmount.nativeElement.value)
-    console.log(ingredient)
     this.newIngredient.emit(ingredient)
   }
 }

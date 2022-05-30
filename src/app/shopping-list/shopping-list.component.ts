@@ -7,7 +7,6 @@ import { Ingredient } from '../shared/ingredient.model';
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit {
-  // @Input('igdCreated') igdData: {name:string, amount:number};
 
   ingredients: Ingredient[] = [
     new Ingredient('Apples', 5),
