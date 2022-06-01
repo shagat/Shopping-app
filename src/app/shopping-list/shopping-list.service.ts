@@ -13,7 +13,11 @@ export class ShoppingListService {
     }
 
     addNewIngredient(igdData: Ingredient) {
-        this.ingredients.push(igdData)
-        this.ingredientChanged.emit(this.ingredients.slice())
+        this.ingredients.push(igdData);
+        this.ingredientChanged.emit(this.ingredients.slice());
+    }
+    addNewIngredients(ingredient: Ingredient[]){
+        this.ingredients.push(...ingredient);
+        this.ingredientChanged.emit(this.ingredients.slice());
     }
 }
