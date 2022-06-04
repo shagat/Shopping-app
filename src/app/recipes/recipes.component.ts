@@ -22,4 +22,3 @@ export class RecipesComponent implements OnInit {
     )
   }
 }
-
