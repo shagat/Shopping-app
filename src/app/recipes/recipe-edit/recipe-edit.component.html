@@ -1,1 +1,66 @@
-<p>recipe-edit works!</p>
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" formControlName="name">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="imagePath">Image</label>
+            <input type="text" class="form-control" id="imagePath" name="imagePath" formControlName="imagePath">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <img src="" class="img-responsive" alt="">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea name="description" class="form-control" id="description" rows="6"
+              formControlName="description"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12" formArrayName="ingredients">
+          <div class="row" *ngFor="let ingredientCrtl of controls; let i = index" [formGroupName]="i"
+            style="margin-top: 10px;">
+            <div class="col-xs-8">
+              <input type="text" name="name" id="name" class="form-control" formControlName="name">
+            </div>
+            <div class="col-xs-2">
+              <input type="number" name="amount" id="amount" class="form-control" formControlName="amount">
+            </div>
+            <div class="col-xs-2">
+              <button class="btn btn-danger">X</button>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-xs-2 pull-right">
+              <button type="button" class="btn btn-success" (click)="onAddIngredient()">+</button>
+            </div>
+          </div>
+          <hr>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-success" [disabled]="recipeForm.invalid">Save</button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
