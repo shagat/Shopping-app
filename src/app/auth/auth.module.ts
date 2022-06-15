@@ -8,7 +8,7 @@ import { AuthComponent } from "./auth.component";
     imports: [
         SharedModule,
         RouterModule.forChild([
-            { path: 'login', component: AuthComponent},  
+            { path: '', component: AuthComponent},  
         ])
     ]
 })
