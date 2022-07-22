@@ -24,9 +24,17 @@ export class Logout implements Action {
 export class LoginStart implements Action {
     readonly type = LOGIN_START;
 
-    constructor(public payload: {email:string, password: string}){}
+    constructor(public payload: { email: string, password: string }) { }
+}
+
+export class LoginFail implements Action {
+    readonly type = LOGIN_FAIL;
+
+    constructor(public payload: string) { }
 }
 
 export type AuthActions =
     Login |
-    Logout;
+    Logout |
+    LoginStart |
+    LoginFail;

@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
@@ -11,7 +11,7 @@ import * as AuthAction from '../auth/store/auth.actions'
     selector: 'app-auth',
     templateUrl: './auth.component.html'
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit {
     isLoginMode = true;
     isLoading = false;
     error: string = null;
@@ -23,6 +23,13 @@ export class AuthComponent {
     }
     onHandleError(){
         this.error = null;
+    }
+
+    ngOnInit(): void {
+        this.store.select('auth').subscribe(authState => {
+          this.isLoading = authState.loading;
+          this.error = authState.authError;
+        })
     }
 
     onSubmit(form: NgForm) {
@@ -49,18 +56,19 @@ export class AuthComponent {
             authObs = this.authService.signup(email, password);
         }
 
-        authObs.subscribe(responseData => {
-            console.log(responseData);
-            this.isLoading = false;
-            this.router.navigate(['/recipes']);
-        },
-            errorMsg => {
-                console.log(errorMsg);
-                this.error = errorMsg;
-                this.isLoading = false;
-            });
+        
+        // authObs.subscribe(responseData => {
+        //     console.log(responseData);
+        //     this.isLoading = false;
+        //     this.router.navigate(['/recipes']);
+        // },
+        //     errorMsg => {
+        //         console.log(errorMsg);
+        //         this.error = errorMsg;
+        //         this.isLoading = false;
+        //     });
 
-        this.error = null;
-        form.reset();
+        // this.error = null;
+        // form.reset();
     }
 }
