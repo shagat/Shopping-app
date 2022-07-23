@@ -18,8 +18,6 @@ export class AuthComponent implements OnInit, OnDestroy {
     private storeSub: Subscription;
 
     constructor(
-        // private authService: AuthService,
-        //  private router: Router,
           private store: Store<fromApp.AppState>
           ) { }
 
@@ -54,12 +52,9 @@ export class AuthComponent implements OnInit, OnDestroy {
         const email = form.value.email;
         const password = form.value.password;
 
-        // let authObs: Observable<AuthResponseData>;
         this.isLoading = true;
 
         if (this.isLoginMode) {
-            //...Login
-            // authObs = this.authService.login(email, password);
             this.store.dispatch(
                 new AuthAction.LoginStart({
                     email: email,
@@ -68,7 +63,6 @@ export class AuthComponent implements OnInit, OnDestroy {
             );
         }
         else {
-            // authObs = this.authService.signup(email, password);
             this.store.dispatch(
                 new AuthAction.SignupStart({ 
                     email: email, 
@@ -76,18 +70,5 @@ export class AuthComponent implements OnInit, OnDestroy {
                 })
             );
         }
-        // authObs.subscribe(responseData => {
-        //     console.log(responseData);
-        //     this.isLoading = false;
-        //     this.router.navigate(['/recipes']);
-        // },
-        //     errorMsg => {
-        //         console.log(errorMsg);
-        //         this.error = errorMsg;
-        //         this.isLoading = false;
-        //     });
-
-        // this.error = null;
-        // form.reset();
     }
 }
