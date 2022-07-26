@@ -44,3 +44,7 @@ export const AutoLogin = createAction(
     '[Auth] Auto Login',
 )
 
+export const ClearError = createAction(
+  '[Auth] Clear Error',
+)
+
