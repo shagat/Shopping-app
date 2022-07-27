@@ -28,7 +28,7 @@ const _authReducer = createReducer(
     loading: false,
     user: new User(
       action.email,
-      action.uderId,
+      action.userId,
       action.token,
       action.expirationDate
     ),
