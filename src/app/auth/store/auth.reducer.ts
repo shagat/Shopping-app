@@ -16,13 +16,13 @@ const initialState: State = {
 
 const _authReducer = createReducer(
   initialState,
-  on(AuthActions.LoginStart, AuthActions.SignupStart, (state) => ({
+  on(AuthActions.loginStart, AuthActions.signupStart, (state) => ({
     ...state,
     authError: null,
     loading: true,
   })),
 
-  on(AuthActions.AuthenticateSuccess, (state, action) => ({
+  on(AuthActions.authenticateSuccess, (state, action) => ({
     ...state,
     authError: null,
     loading: false,
@@ -34,19 +34,19 @@ const _authReducer = createReducer(
     ),
   })),
 
-  on(AuthActions.AuthenticateFail, (state, action) => ({
+  on(AuthActions.authenticateFail, (state, action) => ({
     ...state,
     user: null,
     authError: action.errorMessage,
     loading: false,
   })),
 
-  on(AuthActions.Logout, (state) => ({
+  on(AuthActions.logout, (state) => ({
     ...state,
     user: null,
   })),
 
-  on(AuthActions.ClearError, (state) => ({
+  on(AuthActions.clearError, (state) => ({
     ...state,
     authError: null,
   }))

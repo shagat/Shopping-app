@@ -11,21 +11,21 @@ const initialState: State = {
 };
 const _recipeReducer = createReducer(
   initialState,
-  on(RecipesActions.SetRecipes, (state, action) => ({
+  on(RecipesActions.setRecipes, (state, action) => ({
     ...state,
     recipes: [...action.recipes],
   })),
-  on(RecipesActions.AddRecipe, (state, action) => ({
+  on(RecipesActions.addRecipe, (state, action) => ({
     ...state,
     recipes: [...state.recipes, action.recipe],
   })),
-  on(RecipesActions.UpdateRecipe, (state, action) => ({
+  on(RecipesActions.updateRecipe, (state, action) => ({
     ...state,
     recipes: state.recipes.map((recipe, index) =>
       index === action.index ? { ...action.recipe } : recipe
     ),
   })),
-  on(RecipesActions.DeleteRecipe, (state, action) => ({
+  on(RecipesActions.deleteRecipe, (state, action) => ({
     ...state,
     recipes: state.recipes.filter((_, index) => index !== action.index),
   }))

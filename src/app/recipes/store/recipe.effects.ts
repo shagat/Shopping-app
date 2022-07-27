@@ -11,7 +11,7 @@ import * as fromApp from '../../store/app.reducer';
 export class RecipeEffects {
   fetchRecipes$ = createEffect(() =>
     this.action$.pipe(
-      ofType(RecipesActions.FetchRecipes),
+      ofType(RecipesActions.fetchRecipes),
       switchMap(() => {
         return this.http.get<Recipe[]>(
           'https://ng-recipe-book-a38be-default-rtdb.asia-southeast1.firebasedatabase.app/recipes.json'
@@ -26,7 +26,7 @@ export class RecipeEffects {
         });
       }),
       map((recipes) => {
-        return RecipesActions.SetRecipes({ recipes });
+        return RecipesActions.setRecipes({ recipes });
       })
     )
   );
@@ -34,9 +34,9 @@ export class RecipeEffects {
   storeRecipes$ = createEffect(
     () =>
       this.action$.pipe(
-        ofType(RecipesActions.StoreRecipes),
+        ofType(RecipesActions.storeRecipes),
         withLatestFrom(this.store.select('recipes')),
-        switchMap(([actionData, recipesState]) => {
+        switchMap(([_, recipesState]) => {
           return this.http.put(
             'https://ng-recipe-book-a38be-default-rtdb.asia-southeast1.firebasedatabase.app/recipes.json',
             recipesState.recipes

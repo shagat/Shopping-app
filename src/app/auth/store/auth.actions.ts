@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-export const AuthenticateSuccess = createAction(
+export const authenticateSuccess = createAction(
   '[Auth] Authenticate Success',
   props<{
     email: string;
@@ -11,7 +11,7 @@ export const AuthenticateSuccess = createAction(
   }>()
 );
 
-export const LoginStart = createAction(
+export const loginStart = createAction(
   '[Auth] Login Start',
   props<{
     email: string;
@@ -19,16 +19,16 @@ export const LoginStart = createAction(
   }>()
 );
 
-export const Logout = createAction('[Auth] Logout');
+export const logout = createAction('[Auth] Logout');
 
-export const AuthenticateFail = createAction(
+export const authenticateFail = createAction(
   '[Auth] Authenticate Fail',
   props<{
     errorMessage: string;
   }>()
 );
 
-export const SignupStart = createAction(
+export const signupStart = createAction(
   '[Auth] Signup Start',
   props<{
     email: string;
@@ -36,6 +36,6 @@ export const SignupStart = createAction(
   }>()
 );
 
-export const AutoLogin = createAction('[Auth] Auto Login');
+export const autoLogin = createAction('[Auth] Auto Login');
 
-export const ClearError = createAction('[Auth] Clear Error');
+export const clearError = createAction('[Auth] Clear Error');

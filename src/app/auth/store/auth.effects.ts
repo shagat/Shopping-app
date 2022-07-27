@@ -22,7 +22,7 @@ export interface AuthResponseData {
 const handleError = (errorRes: any) => {
   let errorMsg = 'Unexpected error occured!';
   if (!errorRes.error || !errorRes.error.error) {
-    return of(AuthActions.AuthenticateFail({errorMessage:errorMsg}));
+    return of(AuthActions.authenticateFail({errorMessage:errorMsg}));
   }
   switch (errorRes.error.error.message) {
     case 'EMAIL_EXISTS':
@@ -35,7 +35,7 @@ const handleError = (errorRes: any) => {
       errorMsg = 'The password is incorrect.';
       break;
   }
-  return of(AuthActions.AuthenticateFail({errorMessage:errorMsg}));
+  return of(AuthActions.authenticateFail({errorMessage:errorMsg}));
 };
 
 const handleAuthentication = (
@@ -47,7 +47,7 @@ const handleAuthentication = (
   const expirationDate = new Date(new Date().getTime() + +expiresIn * 1000);
   const user = new User(email, userId, token, expirationDate);
   localStorage.setItem('userData', JSON.stringify(user));
-  return AuthActions.AuthenticateSuccess({
+  return AuthActions.authenticateSuccess({
     email: email,
     userId: userId,
     token: token,
@@ -60,7 +60,7 @@ const handleAuthentication = (
 export class AuthEffects {
   authSignup$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(AuthActions.SignupStart),
+      ofType(AuthActions.signupStart),
       switchMap((signupAction) => {
         return this.http
           .post<AuthResponseData>(
@@ -95,7 +95,7 @@ export class AuthEffects {
   authLogout$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(AuthActions.Logout),
+        ofType(AuthActions.logout),
         tap(() => {
           this.authService.clearLogoutTimer();
           localStorage.removeItem('userData');
@@ -107,7 +107,7 @@ export class AuthEffects {
 
   authLogin$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(AuthActions.LoginStart),
+      ofType(AuthActions.loginStart),
       switchMap((authData) => {
         return this.http
           .post<AuthResponseData>(
@@ -142,7 +142,7 @@ export class AuthEffects {
 
   autoLogin$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(AuthActions.AutoLogin),
+      ofType(AuthActions.autoLogin),
       map(() => {
         const userData: {
           email: string;
@@ -165,7 +165,7 @@ export class AuthEffects {
             new Date(userData._tokenExpirationDate).getTime() -
             new Date().getTime();
           this.authService.setLogoutTimer(expirationDuration);
-          return AuthActions.AuthenticateSuccess({
+          return AuthActions.authenticateSuccess({
             email: loadedUser.email,
             userId: loadedUser.id,
             token: loadedUser.token,
@@ -181,7 +181,7 @@ export class AuthEffects {
   authRedirect$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(AuthActions.AuthenticateSuccess),
+        ofType(AuthActions.authenticateSuccess),
         tap((authActionSuccess) => {
           if (authActionSuccess.redirect) {
             this.router.navigate(['/']);

@@ -30,7 +30,7 @@ export class RecipeDetailsComponent implements OnInit {
       this.id = id;
       return this.store.select('recipes');
     }), map(recipeState => {
-      return recipeState.recipes.find((recipe, index) => {
+      return recipeState.recipes.find((_, index) => {
         return index == this.id
       });
     })).subscribe(recipe => {
@@ -39,7 +39,7 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   addToShoppingList() {
-    this.store.dispatch(new ShoppingListActions.AddIngredients(this.recipe.ingredients));
+    this.store.dispatch( ShoppingListActions.addIngredients({ingredients:this.recipe.ingredients}));
   }
 
   onEditRecipe() {
@@ -47,7 +47,7 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   onDeleteRecipe() {
-    this.store.dispatch(new RecipeActions.DeleteRecipe(this.id))
+    this.store.dispatch( RecipeActions.deleteRecipe({index: this.id}))
     this.router.navigate(['/recipes']);
   }
 }

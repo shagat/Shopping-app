@@ -1,9 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
-// import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { Subscription } from "rxjs";
-// import { AuthResponseData, AuthService } from "./auth.service";
 import * as fromApp from '../store/app.reducer';
 import * as AuthAction from '../auth/store/auth.actions'
 
@@ -26,7 +24,7 @@ export class AuthComponent implements OnInit, OnDestroy {
     }
 
     onHandleError() {
-        this.store.dispatch(new AuthAction.ClearError());
+        this.store.dispatch(AuthAction.clearError());
     }
 
     ngOnInit(): void {
@@ -56,7 +54,7 @@ export class AuthComponent implements OnInit, OnDestroy {
 
         if (this.isLoginMode) {
             this.store.dispatch(
-                new AuthAction.LoginStart({
+                AuthAction.loginStart({
                     email: email,
                     password: password,
                 })
@@ -64,9 +62,9 @@ export class AuthComponent implements OnInit, OnDestroy {
         }
         else {
             this.store.dispatch(
-                new AuthAction.SignupStart({ 
-                    email: email, 
-                    password: password 
+                AuthAction.signupStart({
+                    email: email,
+                    password: password
                 })
             );
         }
