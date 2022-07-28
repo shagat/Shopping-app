@@ -95,6 +95,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "shopping-app:build:production",
+            "firebaseProject": "ng-recipe-book-a38be",
+            "firebaseHostingSite": "ng-recipe-book-a38be"
+          }
         }
       }
     }
