@@ -31,6 +31,6 @@ const _recipeReducer = createReducer(
   }))
 );
 
-export function recipeReducer(state: State, action: Action){
-  return _recipeReducer(state,action);
+export function recipeReducer(state: State, action: Action) {
+  return _recipeReducer(state, action);
 }

@@ -32,6 +32,4 @@ export const startEdit = createAction(
     index: number;
   }>()
 );
-export const stopEdit = createAction(
-  '[Shopping List] Stop Edit'
-  );
+export const stopEdit = createAction('[Shopping List] Stop Edit');
